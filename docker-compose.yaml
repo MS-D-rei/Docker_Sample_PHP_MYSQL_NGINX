@@ -20,8 +20,9 @@ services:
     container_name: nginx-server
   php:
     build:
-      context: ./dockerfiles
-      dockerfile: php.dockerfile
+      context: .
+      dockerfile: dockerfiles/php.dockerfile
+    # for development
     # volumes:
     #   - ./src:/var/www/html:delegated
     container_name: php-container
@@ -39,8 +40,8 @@ services:
       - ./src:/var/www/html
   artisan:
     build:
-      context: ./dockerfiles
-      dockerfile: php.dockerfile
+      context: .
+      dockerfile: dockerfiles/php.dockerfile
     volumes:
       - ./src:/var/www/html
     entrypoint: ["php", "/var/www/html/artisan"]
