@@ -3,12 +3,17 @@ version: "3.8"
 services:
   # this server is the entrypoint of http request
   server:
-    image: 'nginx:stable-alpine'
+    # image: 'nginx:stable-alpine'
+    # for production, copy src to /var/www/html
+    build:
+      context: .
+      dockerfile: dockerfiles/nginx.dockerfile
     ports: 
       - '8000:80'
-    volumes: 
-      - ./src:/var/www/html
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    # bind mount is useful for development, not for production
+    # volumes: 
+    #   - ./src:/var/www/html
+    #   - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - php
       - mysql
