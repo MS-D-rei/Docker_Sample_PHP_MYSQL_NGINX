@@ -22,8 +22,8 @@ services:
     build:
       context: ./dockerfiles
       dockerfile: php.dockerfile
-    volumes:
-      - ./src:/var/www/html:delegated
+    # volumes:
+    #   - ./src:/var/www/html:delegated
     container_name: php-container
   mysql:
     image: mysql:5.7
